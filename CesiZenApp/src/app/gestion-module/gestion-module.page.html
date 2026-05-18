@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pause Relaxation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="ion-text-center subtitle">Choisissez votre méthode pour décompresser</p>
+
+  <ion-item lines="none" class="filter-item">
+    <ion-select label="Choisir une catégorie" label-placement="floating" fill="outline"
+                value="toutes" (ionChange)="filtrerParCategorie($event)">
+      <ion-select-option value="toutes">Toutes les catégories</ion-select-option>
+      <ion-select-option *ngFor="let cat of categories" [value]="cat">
+        {{ cat }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let act of activitesFiltrees">
+        <ion-card [routerLink]="['/details', 'activite', act.idContenu]" button="true">
+          <ion-card-header>
+            <div class="category-badge">{{ act.categorie?.libelle }}</div>
+            <ion-card-title>{{ act.titre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-icon name="time-outline"></ion-icon> {{ act.duree }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="activitesFiltrees.length === 0" class="ion-text-center ion-padding">
+    <p>Aucune activité disponible pour cette catégorie.</p>
+  </div>
+</ion-content>

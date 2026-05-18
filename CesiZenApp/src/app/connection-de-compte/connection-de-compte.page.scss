@@ -1,0 +1,26 @@
+$blue-france: #000091;
+$red-france: #E1000F;
+
+ion-button {
+  flex: 1;
+  --border-radius: 0;
+  font-weight: bold;
+  margin: 2.5%;
+
+}
+
+.custom-input {
+  /* La largeur s'adaptera au parent (ion-col) */
+  width: 100%;
+
+  /* Optionnel : La taille de police s'adapte à la largeur de l'écran */
+  font-size: clamp(14px, 2vw, 20px);
+}
+
+/* Cibler spécifiquement le conteneur interne d'Ionic si besoin */
+ion-input {
+  --padding-start: 15px;
+  min-height: 50px;
+  margin: 5px;
+}
+

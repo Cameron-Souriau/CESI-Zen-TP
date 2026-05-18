@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/gestion-module"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Détails</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1 class="ion-text-center">{{ item?.titre }}</h1>
+
+  <hr />
+
+  <div *ngIf="item?.lienVideo" class="video-container">
+    <iframe
+      [src]="getSafeUrl(item.lienVideo)"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div *ngIf="item?.contenu" class="info-container">
+    <ion-card>
+      <ion-card-content>
+        <p class="text-content">{{ item.contenu }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

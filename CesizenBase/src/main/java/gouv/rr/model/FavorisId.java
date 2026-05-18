@@ -1,10 +1,8 @@
-package model;
+package gouv.rr.model;
 
-import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-// --- Classe pour la clé double ---
 class FavorisId implements Serializable {
     private int idCitoyen;
     private int idActivite;

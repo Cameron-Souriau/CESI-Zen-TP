@@ -1,9 +1,8 @@
-package model;
+package gouv.rr.model;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-// Cette classe sert uniquement à dire à Spring Boot : "La clé primaire est double"
 public class ConsulteId implements Serializable {
     private int idCitoyen;
     private int idContenu;
@@ -15,7 +14,6 @@ public class ConsulteId implements Serializable {
         this.idContenu = idContenu;
     }
 
-    // --- Getters, Setters, equals et hashCode (obligatoires pour une clé composite) ---
     public int getIdCitoyen() { return idCitoyen; }
     public void setIdCitoyen(int idCitoyen) { this.idCitoyen = idCitoyen; }
 

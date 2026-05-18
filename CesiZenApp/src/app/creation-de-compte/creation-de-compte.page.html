@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="muted" class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <img [src]="this.currentImg.src">
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="5">
+        <ion-list>
+          <ion-item lines="none" class="custom-input" style="text-size-adjust: auto">
+            <ion-input [counterFormatter]="customCounterFormatter" [counter]="true"
+                       label="Nom d'utilisateur" label-placement="stacked" fill="outline" type="text" [maxlength]="20"
+                       placeholder="Nom" size="small" >
+            </ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="5"  style="text-size-adjust: auto">
+        <ion-item lines="none" class="custom-input" style="text-size-adjust: auto">
+          <ion-input class="ion"
+                     label="Mots de passe" label-placement="stacked" fill="outline"
+                     placeholder="Mots de passe" type="password">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-lg="5"  style="text-size-adjust: auto">
+        <ion-item lines="none" class="custom-input" style="text-size-adjust: auto">
+          <ion-input class="ion"
+                     label="Mots de passe" label-placement="stacked" fill="outline"
+                     placeholder="Mots de passe" type="password">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="2">
+        <ion-button shape="round" color="" style="width: 100%;">
+          Créer un compte
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

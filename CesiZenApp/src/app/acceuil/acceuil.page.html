@@ -1,0 +1,62 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Accueil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="welcome-section">
+    <h1>Découvrez vos contenus <span>Zen</span></h1>
+    <p>Prenez un moment pour vous informer aujourd'hui.</p>
+  </div>
+
+  <div>
+  </div>
+
+  <div class="horizontal-scroll">
+    <ion-card [button]="true" class="featured-card">
+      <img src="https://picsum.photos/seed/meditation/400/200" alt="Méditation" />
+      <ion-card-header>
+        <ion-card-subtitle>Bien-être</ion-card-subtitle>
+        <ion-card-title>5 minutes pour souffler</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card [button]="true" class="featured-card">
+      <img src="https://picsum.photos/seed/nature/400/200" alt="Nature" />
+      <ion-card-header>
+        <ion-card-subtitle>Environnement</ion-card-subtitle>
+        <ion-card-title>L'impact du vert au bureau</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
+
+  <div class="section-header ion-margin-top">
+    <h2>Articles récents</h2>
+  </div>
+
+  <ion-list lines="none">
+    <ion-item [button]="true" class="info-item">
+      <ion-thumbnail slot="start">
+        <img src="https://picsum.photos/seed/tech/100" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Le numérique responsable</h3>
+        <p>Comment réduire son empreinte carbone...</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item [button]="true" class="info-item">
+      <ion-thumbnail slot="start">
+        <img src="https://picsum.photos/seed/health/100" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>Sommeil et productivité</h3>
+        <p>Les secrets d'une nuit réparatrice.</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

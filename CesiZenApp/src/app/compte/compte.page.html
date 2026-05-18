@@ -1,0 +1,38 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mon Compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-header ion-text-center">
+    <ion-avatar>
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <h2>Username</h2>
+    <p>Email</p>
+  </div>
+
+  <ion-list [inset]="true">
+    <ion-item [button]="true" (click)="openPasswordModal()">
+      <ion-icon slot="start" name="lock-closed-outline" color="primary"></ion-icon>
+      <ion-label>Changer le mot de passe</ion-label>
+      <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-list [inset]="true">
+    <ion-item [button]="true" (click)="confirmDeleteAccount()" [detail]="false" class="delete-item">
+      <ion-icon slot="start" name="trash-outline" color="danger"></ion-icon>
+      <ion-label color="danger">Supprimer mon compte</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <p class="ion-text-center version-text">Cesizen v1.0.0</p>
+</ion-content>

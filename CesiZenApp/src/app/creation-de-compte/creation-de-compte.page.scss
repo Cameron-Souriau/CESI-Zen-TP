@@ -1,0 +1,14 @@
+$blue-france: #000091;
+$red-france: #E1000F;
+
+ion-button {
+  flex: 1;
+  --border-radius: 0;
+  font-weight: bold;
+  margin: 2.5%;
+}
+ion-input {
+  --padding-start: 15px;
+  min-height: 50px;
+  margin: 5px;
+}

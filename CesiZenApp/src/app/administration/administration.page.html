@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>Administration Cesizen</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="currentTab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="users">
+        <ion-label>Utilisateurs</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="info">
+        <ion-label>Infos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="relax">
+        <ion-label>Relaxation</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="admin-actions">
+    <ion-searchbar
+      placeholder="Rechercher..."
+      [(ngModel)]="searchQuery"
+      (ionInput)="filterItems()">
+    </ion-searchbar>
+
+    <ion-button expand="block" (click)="addItem()" color="success" class="ion-margin-bottom">
+      <ion-icon name="add-outline" slot="start"></ion-icon>
+      Ajouter {{ getLabel() }}
+    </ion-button>
+  </div>
+
+  <ion-list [inset]="true" *ngIf="filteredItems.length > 0">
+    <ion-item-sliding *ngFor="let item of filteredItems">
+      <ion-item>
+        <ion-avatar slot="start" *ngIf="currentTab === 'users'">
+          <img [src]="item.avatar || 'assets/default-avatar.png'">
+        </ion-avatar>
+        <ion-icon [name]="item.icon" slot="start" *ngIf="currentTab !== 'users'"></ion-icon>
+
+        <ion-label>
+          <h2>{{ item.title || item.name }}</h2>
+          <p>{{ item.subtitle || item.email }}</p>
+        </ion-label>
+
+        <ion-note slot="end" color="medium">{{ item.date || item.role }}</ion-note>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteItem(item)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div *ngIf="filteredItems.length === 0" class="ion-text-center ion-padding">
+    <ion-text color="medium">Aucun résultat trouvé.</ion-text>
+  </div>
+
+</ion-content>

@@ -1,4 +1,9 @@
 package gouv.rr.repository;
 
-public interface InformationRepository {
+import gouv.rr.model.Information;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface InformationRepository extends JpaRepository<Information, Integer> {
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CESI Zen TP.iml" filepath="$PROJECT_DIR$/CESI Zen TP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CesizenBase/CesizenBase.iml" filepath="$PROJECT_DIR$/CesizenBase/CesizenBase.iml" />
     </modules>
   </component>
 </project>

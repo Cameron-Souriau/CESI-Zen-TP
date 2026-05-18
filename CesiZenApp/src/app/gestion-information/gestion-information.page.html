@@ -1,0 +1,46 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pause Relaxation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-item lines="none" class="filter-item">
+    <ion-select
+      label="Filtrer par auteur"
+      label-placement="stacked"
+      fill="outline"
+      value="tous"
+      (ionChange)="filtrerParAuteur($event)">
+
+      <ion-select-option value="tous">Tous les auteurs</ion-select-option>
+      <ion-select-option *ngFor="let auteur of auteurs" [value]="auteur">
+        {{ auteur }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let info of informationsFiltrees">
+        <ion-card [routerLink]="['/details', 'info', info.idContenu]" button="true">
+          <ion-card-header>
+            <ion-card-subtitle>Par {{ info.auteur }}</ion-card-subtitle>
+            <ion-card-title>{{ info.titre }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="content-preview">{{ info.contenu }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="informationsFiltrees.length === 0" class="ion-text-center ion-padding">
+    <p>Aucun article trouvé pour cet auteur.</p>
+  </div>
+</ion-content>
