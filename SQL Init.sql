@@ -56,13 +56,13 @@ CREATE TABLE information (
 );
 
 -- ---------------------------------------------------------
--- Table : activite (Avec durée au format TIME et date d'ajout)
+-- Table : activite (Avec duree au format TIME et date d'ajout)
 -- ---------------------------------------------------------
 CREATE TABLE activite (
     id_contenu INT AUTO_INCREMENT PRIMARY KEY,
     titre VARCHAR(200) NOT NULL,
     lien_video TEXT,
-    Durée TIME NOT NULL,
+    Duree TIME NOT NULL,
     date_ajout DATE,
     id_categorie INT NOT NULL,
     CONSTRAINT fk_activite_categorie FOREIGN KEY (id_categorie) REFERENCES categorie(id) ON DELETE CASCADE
@@ -201,7 +201,7 @@ INSERT INTO information (titre, contenu, auteur) VALUES
 -- ---------------------------------------------------------
 -- Table : activite (Modules de relaxation)
 -- ---------------------------------------------------------
-INSERT INTO activite (titre, Durée, id_categorie, date_ajout, lien_video) VALUES
+INSERT INTO activite (titre, Duree, id_categorie, date_ajout, lien_video) VALUES
 ('Méditation du matin', '00:10:00', 1, '2023-10-01','https://youtu.be/zbrxbpaJXd8'),        -- 10 minutes
 ('Exercice 748', '00:03:15', 2, '2023-10-05','https://youtu.be/zbrxbpaJXd8'),               -- 5 minutes
 ('Exercice 55', '00:4:07', 2, '2023-10-10','https://youtu.be/rwU9gX0Mc4U'),            -- 15 minutes

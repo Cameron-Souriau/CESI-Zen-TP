@@ -1,0 +1,52 @@
+services:
+  database:
+    image: mysql:8.0
+    container_name: mysql_backend
+    environment:
+      MYSQL_ROOT_PASSWORD: root   
+      MYSQL_DATABASE: cesizenV2      
+      # (Rappel : j'ai enlevé MYSQL_USER et MYSQL_PASSWORD ici comme vu avant)
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./SQL Init.sql:/docker-entrypoint-initdb.d/01-init.sql"
+      - "mysql_data:/var/lib/mysql"
+    # NOUVEAU : On apprend à Docker à vérifier si MySQL est prêt
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend-auth:
+    image: cesizenapi:latest
+    build:
+      context: ./CesizenBase
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
+    # NOUVEAU : On dit au back-end d'attendre que le test de santé soit validé
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/cesizenV2?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+
+# ... (le reste de ton fichier pour le front reste identique)
+
+  # --- TON FRONT-END IONIC ---
+  frontend-ionic:
+    image: cesizenfront:latest
+    build:
+      context: ./CesiZenApp
+      dockerfile: Dockerfile
+    ports:
+      - "8100:80"
+    depends_on:
+      - backend-auth
+
+volumes:
+  mysql_data:
