@@ -1,0 +1,17 @@
+name: Deploy to Production
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout le code
+        uses: actions/checkout@v4
+
+      - name: Lancer l'application
+        run: |
+          cd /chemin/de/votre/projet/CESI-ZEN-TP
+          git pull
+          docker compose up -d --build
