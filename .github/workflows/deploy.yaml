@@ -12,6 +12,6 @@ jobs:
 
       - name: Lancer l'application
         run: |
-          cd /chemin/de/votre/projet/CESI-ZEN-TP
+          cd /home/patate/Documents/CESI-Zen-TP
           git pull
           docker compose up -d --build
