@@ -10,10 +10,10 @@ jobs:
       - name: Checkout le code
         uses: actions/checkout@v4
 
-- name: Lancer l'application
+      - name: Lancer l'application
         run: |
-          cd /home/patate/Documents/actions-runner/_work/CESI-Zen-TP/CESI-Zen-TP
-          git pull origin master
-          docker compose down
-          docker compose rm -f
-          docker compose up -d --build
+                cd /home/patate/Documents/actions-runner/_work/CESI-Zen-TP/CESI-Zen-TP
+                git pull origin master
+                docker compose down
+                docker compose rm -f
+                docker compose up -d --build
