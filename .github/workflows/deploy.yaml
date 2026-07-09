@@ -12,6 +12,20 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v4
 
+      - name: Démarrer la base de données et attendre qu'elle soit prête
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker compose up -d database
+          # Attendre que MySQL soit prêt (healthcheck)
+          for i in {1..30}; do
+            if docker compose exec -T database mysqladmin ping -h localhost -u root -proot &> /dev/null; then
+              echo "Database is ready!"
+              break
+            fi
+            echo "Waiting for database... ($i/30)"
+            sleep 1
+          done
+
       - name: Lancer les tests unitaires (Backend Maven)
         run: |
           cd $GITHUB_WORKSPACE
@@ -22,6 +36,12 @@ jobs:
           cd $GITHUB_WORKSPACE
           docker compose run --rm linter
         continue-on-error: true  # Le linter ne doit pas bloquer le déploiement
+
+      - name: Arrêter et nettoyer la base de données
+        if: always()
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker compose down
 
   deploy:
     name: Deploy to Production
