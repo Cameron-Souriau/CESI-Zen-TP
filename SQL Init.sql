@@ -34,7 +34,7 @@ CREATE TABLE citoyen_connecte (
     login VARCHAR(100) NOT NULL,
     Mdp_Citoyen_Connecte VARCHAR(255) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
-    isActive BOOLEAN
+    is_active BOOLEAN
 );
 
 -- ---------------------------------------------------------
@@ -157,7 +157,7 @@ INSERT INTO administrateur (login, Mdp_Admin) VALUES
 -- ---------------------------------------------------------
 -- Table : citoyen_connecte
 -- ---------------------------------------------------------
-INSERT INTO citoyen_connecte (login, Mdp_Citoyen_Connecte, Email, isActive) VALUES
+INSERT INTO citoyen_connecte (login, Mdp_Citoyen_Connecte, Email, is_active) VALUES
 ('citoyen_pierre', 'pass123', 'pierre@email.com', true),
 ('citoyen_paul', 'pass123', 'paul@email.com', true),
 ('citoyen_jacques', 'pass123', 'jacques@email.com',true),

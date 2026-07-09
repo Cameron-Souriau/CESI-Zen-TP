@@ -19,8 +19,8 @@ public class CitoyenConnecte {
   @Column(name = "Mdp_Citoyen_Connecte")
   private String mdpCitoyen;
 
-  @Column(name = "isActive")
-  private boolean isActive;
+  @Column(name = "is_active")
+  private boolean active;
 
   public CitoyenConnecte() {}
 
@@ -28,7 +28,7 @@ public class CitoyenConnecte {
     this.login = login;
     this.email = email;
     this.mdpCitoyen = mdpCitoyen;
-    this.isActive = isActive;
+    this.active = isActive;
   }
 
   public int getId() { return id; }
@@ -43,6 +43,6 @@ public class CitoyenConnecte {
   public String getMdpCitoyen() { return mdpCitoyen; }
   public void setMdpCitoyen(String mdpCitoyen) { this.mdpCitoyen = mdpCitoyen; }
 
-  public boolean isActive() { return isActive; }
-  public void setActive(boolean active) { isActive = active; }
+  public boolean isActive() { return active; }
+  public void setActive(boolean active) { this.active = active; }
 }
