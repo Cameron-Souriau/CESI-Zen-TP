@@ -1,19 +1,19 @@
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\ConsulteId.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\Administrateur.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\FavorisId.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\Activite.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\CitoyenConnecte.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\controller\CitoyenConnecteController.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\controller\InformationController.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\Consulte.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\Favoris.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\Main.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\controller\ActiviteController.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\controller\AdministrateurController.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\Information.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\repository\InformationRepository.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\model\Categorie.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\repository\ActiviteRepository.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\repository\CitoyenConnecteRepository.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\repository\AdministrateurRepository.java
-C:\Users\camer\IdeaProjects\CESI Zen TP\CesizenBase\src\main\java\gouv\rr\controller\AuthController.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/Consulte.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/Administrateur.java
+/workspace/CesizenBase/src/main/java/gouv/rr/controller/AuthController.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/Favoris.java
+/workspace/CesizenBase/src/main/java/gouv/rr/repository/InformationRepository.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/Activite.java
+/workspace/CesizenBase/src/main/java/gouv/rr/controller/InformationController.java
+/workspace/CesizenBase/src/main/java/gouv/rr/controller/AdministrateurController.java
+/workspace/CesizenBase/src/main/java/gouv/rr/controller/CitoyenConnecteController.java
+/workspace/CesizenBase/src/main/java/gouv/rr/Main.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/FavorisId.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/Information.java
+/workspace/CesizenBase/src/main/java/gouv/rr/repository/AdministrateurRepository.java
+/workspace/CesizenBase/src/main/java/gouv/rr/repository/CitoyenConnecteRepository.java
+/workspace/CesizenBase/src/main/java/gouv/rr/controller/ActiviteController.java
+/workspace/CesizenBase/src/main/java/gouv/rr/repository/ActiviteRepository.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/ConsulteId.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/CitoyenConnecte.java
+/workspace/CesizenBase/src/main/java/gouv/rr/model/Categorie.java

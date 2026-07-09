@@ -85,3 +85,8 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
+CesizenBase/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+CesizenBase/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+CesizenBase/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+CesizenBase/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+CesizenBase/target/surefire-reports/gouv.rr.CesizenApplicationTest.txt
