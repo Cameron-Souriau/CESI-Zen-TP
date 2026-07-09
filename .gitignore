@@ -90,3 +90,12 @@ CesizenBase/target/maven-status/maven-compiler-plugin/compile/default-compile/in
 CesizenBase/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
 CesizenBase/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
 CesizenBase/target/surefire-reports/gouv.rr.CesizenApplicationTest.txt
+# Maven / Java
+/target/
+/**/target/
+/*.iml
+/.idea/
+/*.log
+/surefire-reports/
+/**/surefire-reports/
+/*.lst
