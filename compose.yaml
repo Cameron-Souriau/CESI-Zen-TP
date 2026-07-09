@@ -85,6 +85,10 @@ services:
     image: maven:3.9.5-eclipse-temurin-17
     container_name: cesizen_unit_tests
     working_dir: /workspace/CesizenBase
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/cesizenV2?allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
     volumes:
       - ./CesizenBase:/workspace/CesizenBase
       - maven_repo:/root/.m2
@@ -92,8 +96,6 @@ services:
     depends_on:
       database:
         condition: service_healthy
-      backend-auth:
-        condition: service_started
     restart: 'no'
 
 volumes:
