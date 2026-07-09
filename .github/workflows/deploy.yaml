@@ -12,6 +12,12 @@ jobs:
       - name: Checkout du code
         uses: actions/checkout@v4
 
+      - name: Nettoyer les artefacts stales du workspace
+        run: |
+          cd $GITHUB_WORKSPACE
+          chmod +x scripts/ci-clean.sh
+          ./scripts/ci-clean.sh "$GITHUB_WORKSPACE"
+
       - name: Démarrer la base de données et attendre qu'elle soit prête
         run: |
           cd $GITHUB_WORKSPACE
@@ -50,6 +56,12 @@ jobs:
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
+
+      - name: Nettoyer les artefacts stales du workspace
+        run: |
+          cd $GITHUB_WORKSPACE
+          chmod +x scripts/ci-clean.sh
+          ./scripts/ci-clean.sh "$GITHUB_WORKSPACE"
 
       - name: Mettre à jour et lancer la stack Docker
         run: |
