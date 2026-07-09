@@ -1,19 +1,46 @@
-name: Deploy to Production
+name: CI/CD Deployment
+
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
 
 jobs:
-  deploy:
+  test-and-lint:
+    name: Tests & Linting
     runs-on: self-hosted
     steps:
-      - name: Checkout le code
+      - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: Lancer l'application
+      - name: Lancer les tests unitaires (Backend Maven)
         run: |
-                cd /home/patate/Documents/actions-runner/_work/CESI-Zen-TP/CESI-Zen-TP
-                git pull origin master
-                docker compose down
-                docker compose rm -f
-                docker compose up -d --build
+          cd $GITHUB_WORKSPACE
+          docker compose run --rm unit-tests
+
+      - name: Lancer le linter (Frontend)
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker compose run --rm linter
+        continue-on-error: true  # Le linter ne doit pas bloquer le déploiement
+
+  deploy:
+    name: Deploy to Production
+    needs: test-and-lint
+    runs-on: self-hosted
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Mettre à jour et lancer la stack Docker
+        run: |
+          cd $GITHUB_WORKSPACE
+          git pull origin master
+          docker compose down
+          docker compose rm -f
+          docker compose up -d --build --remove-orphans
+
+      - name: Vérifier la santé de l'application
+        run: |
+          sleep 10
+          docker compose ps
+          docker compose logs --tail 50

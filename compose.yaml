@@ -1,4 +1,18 @@
 services:
+  wud:
+    image: fmartinou/whats-up-docker:latest
+    container_name: wud
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3000:3000"
+    environment:
+      - WUD_WATCHER_LOCAL_CRON=0 * * * *
+      # Configuration Discord
+      - WUD_TRIGGER_DISCORD=true
+      - WUD_TRIGGER_DISCORD_WEBHOOK=https://discordapp.com/api/webhooks/1523618644427407471/U5Gz4bUTdBxvn3w2AU9dbp3GO3_D4WrGN6xkZH0YOv7WEAW0gWlEptbRQD_LlBsm6UFg
+      - WUD_TRIGGER_DISCORD_JOBS=dockerimage:new,container:update.success,container:update.failure
+
   database:
     image: mysql:8.0
     container_name: mysql_backend
@@ -25,7 +39,6 @@ services:
       dockerfile: dockerfile
     ports:
       - "8080:8080"
-    # NOUVEAU : On dit au back-end d'attendre que le test de santé soit validé
     depends_on:
       database:
         condition: service_healthy
@@ -34,6 +47,10 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    labels:
+      - wud.watch=true
+      - wud.trigger.docker-compose.backend-auth=true
+      - wud.trigger.docker-compose.backend-auth.file=./compose.yaml
 
 # ... (le reste de ton fichier pour le front reste identique)
 
@@ -47,6 +64,39 @@ services:
       - "8100:80"
     depends_on:
       - backend-auth
+    labels:
+      - wud.watch=true
+      - wud.trigger.docker-compose.frontend-ionic=true
+      - wud.trigger.docker-compose.frontend-ionic.file=./compose.yaml
+
+  # Service pour lancer un linter (frontend)
+  linter:
+    image: node:18
+    container_name: cesizen_linter
+    working_dir: /workspace/CesiZenApp
+    volumes:
+      - ./CesiZenApp:/workspace/CesiZenApp
+      - npm_cache:/root/.npm
+    command: /bin/sh -c "if [ -f package.json ]; then npm ci && npm run lint; else echo 'No frontend package.json, skipping lint'; fi"
+    restart: 'no'
+
+  # Service pour exécuter les tests unitaires (backend Maven)
+  unit-tests:
+    image: maven:3.9.5-eclipse-temurin-17
+    container_name: cesizen_unit_tests
+    working_dir: /workspace/CesizenBase
+    volumes:
+      - ./CesizenBase:/workspace/CesizenBase
+      - maven_repo:/root/.m2
+    command: mvn -f /workspace/CesizenBase/pom.xml test
+    depends_on:
+      database:
+        condition: service_healthy
+      backend-auth:
+        condition: service_started
+    restart: 'no'
 
 volumes:
   mysql_data:
+  maven_repo:
+  npm_cache:
