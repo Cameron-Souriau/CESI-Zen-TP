@@ -2,7 +2,7 @@ name: CI/CD Deployment
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master, main, Dev ]
 
 jobs:
   test-and-lint:
@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
+        with:
+          clean: false
 
       - name: Nettoyer les artefacts stales du workspace
         run: |
@@ -31,7 +33,7 @@ jobs:
             echo "Waiting for database... ($i/30)"
             sleep 1
           done
-
+#réglement problème interface
       - name: Lancer les tests unitaires (Backend Maven)
         run: |
           cd $GITHUB_WORKSPACE
@@ -42,7 +44,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           docker compose run --rm linter
         continue-on-error: true  # Le linter ne doit pas bloquer le déploiement
-
+# petit fix interface test
       - name: Arrêter et nettoyer la base de données
         if: always()
         run: |
@@ -56,12 +58,39 @@ jobs:
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
+        with:
+          clean: false
 
       - name: Nettoyer les artefacts stales du workspace
         run: |
           cd $GITHUB_WORKSPACE
           chmod +x scripts/ci-clean.sh
           ./scripts/ci-clean.sh "$GITHUB_WORKSPACE"
+
+      - name: Construire les images Docker
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker compose build backend-auth frontend-ionic
+
+      - name: Scanner les images Docker avec Trivy
+        uses: aquasecurity/trivy-action@v0.20.0
+        with:
+          image-ref: cesizenapi:latest
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
+
+      - name: Scanner l'image frontend avec Trivy
+        uses: aquasecurity/trivy-action@v0.20.0
+        with:
+          image-ref: cesizenfront:latest
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
 
       - name: Mettre à jour et lancer la stack Docker
         run: |

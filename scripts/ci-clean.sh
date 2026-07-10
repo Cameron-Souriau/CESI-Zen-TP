@@ -17,8 +17,13 @@ find "$workspace" -type d \( -name node_modules -o -name dist -o -name .angular 
 if command -v id >/dev/null 2>&1; then
   owner="$(id -u):$(id -g)"
   if command -v sudo >/dev/null 2>&1; then
-    sudo chown -R "$owner" "$workspace" 2>/dev/null || true
-    sudo chmod -R u+rwX "$workspace" 2>/dev/null || true
+    if sudo -n true 2>/dev/null; then
+      sudo chown -R "$owner" "$workspace" 2>/dev/null || true
+      sudo chmod -R u+rwX "$workspace" 2>/dev/null || true
+    else
+      chown -R "$owner" "$workspace" 2>/dev/null || true
+      chmod -R u+rwX "$workspace" 2>/dev/null || true
+    fi
   else
     chown -R "$owner" "$workspace" 2>/dev/null || true
     chmod -R u+rwX "$workspace" 2>/dev/null || true
