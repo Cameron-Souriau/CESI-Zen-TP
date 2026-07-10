@@ -33,7 +33,7 @@ jobs:
             echo "Waiting for database... ($i/30)"
             sleep 1
           done
-
+#réglement problème interface
       - name: Lancer les tests unitaires (Backend Maven)
         run: |
           cd $GITHUB_WORKSPACE
