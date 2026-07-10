@@ -73,7 +73,7 @@ jobs:
           docker compose build backend-auth frontend-ionic
 
       - name: Scanner les images Docker avec Trivy
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action@v0.20.0
         with:
           image-ref: cesizenapi:latest
           format: table
@@ -83,7 +83,7 @@ jobs:
           severity: HIGH,CRITICAL
 
       - name: Scanner l'image frontend avec Trivy
-        uses: aquasecurity/trivy-action@0.20.0
+        uses: aquasecurity/trivy-action@v0.20.0
         with:
           image-ref: cesizenfront:latest
           format: table
