@@ -2,7 +2,7 @@ name: CI/CD Deployment
 
 on:
   push:
-    branches: [ master, main ]
+    branches: [ master, main, Dev ]
 
 jobs:
   test-and-lint:
@@ -62,6 +62,31 @@ jobs:
           cd $GITHUB_WORKSPACE
           chmod +x scripts/ci-clean.sh
           ./scripts/ci-clean.sh "$GITHUB_WORKSPACE"
+
+      - name: Construire les images Docker
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker compose build backend-auth frontend-ionic
+
+      - name: Scanner les images Docker avec Trivy
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: cesizenapi:latest
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
+
+      - name: Scanner l'image frontend avec Trivy
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: cesizenfront:latest
+          format: table
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: os,library
+          severity: HIGH,CRITICAL
 
       - name: Mettre à jour et lancer la stack Docker
         run: |
