@@ -44,7 +44,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           docker compose run --rm linter
         continue-on-error: true  # Le linter ne doit pas bloquer le déploiement
-
+# petit fix interface test
       - name: Arrêter et nettoyer la base de données
         if: always()
         run: |
